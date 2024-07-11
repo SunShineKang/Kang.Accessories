@@ -1,0 +1,211 @@
+@charset "UTF-8";
+@font-face {
+    font-family: 'yg-jalnan';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_four@1.2/JalnanOTF00.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    line-height: 1;
+    color: #333;
+}
+.loading {
+    width: 100%;
+    height: 100%;
+    background: url(../img/5.jpg) center center / cover no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    transition: 0.7s;
+    z-index: 9999999;
+}
+
+.loading ul {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.loading ul li {
+    font-size: 100PX;
+    display: none;
+    color: #fff;
+    padding: 0 5px;
+}
+.loading ul li.on {
+    display: block;
+}
+.header {
+    height: 80px;
+    
+}
+.header .inner {
+    max-width: 1920px;
+    width: calc(100% - 100px);
+    height: 100%;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.header .inner .int ul {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.header .inner .int ul li {
+    padding: 0 10px;
+}
+
+.header .inner .icon {
+    width: 30px;
+    height: 30px;
+}
+.header .inner .icon img {
+    width: 100%;
+    height: 100%;
+}
+
+.header .inner .nav {
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: bisque;
+    padding: 50px 0;
+    display: none;
+    z-index: 999;
+
+}
+
+.header .inner .nav .gnb > li {
+    margin: 20px 0;
+}
+.header .inner .nav .gnb > li .depth01 {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    position: relative;
+    display: block;
+}
+.header .gnb > li .depth01.item::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url('../img/아래.png') right center / 100% no-repeat;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.header .gnb > li .depth01.on.item::before {
+   
+    transform: rotate(180deg) translateY(50%);
+}
+.header .inner .nav .gnb > li .depth02 {
+    background-color: rgb(232, 245, 161);
+    padding: 20px;
+    display: none;
+}
+.header .inner .nav .gnb > li .depth02 li {
+    padding: 10px 0;
+}
+
+.header .inner .nav .gnb > li .depth02.on {
+    display: block;
+}
+
+.section02 {
+    max-width: 1920px;
+    width: calc(100% - 60px);
+    height: 900px;
+    background-color: aqua;
+}
+.section02 {
+    height: 1000px;
+    margin: 0 auto;
+    content: '';
+    background: url('../img/2.jpg') center center / cover repeat;
+    position: relative;
+}
+.section02 .wrap {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.section02 .wrap figure {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 450px 20px 0 20px;
+    box-shadow: 0 0px 20px 0 rgba(0, 0, 0, 0.5) ;
+    opacity: 0;
+}
+.section02 .wrap figure img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.section02 .text {
+    text-align: center;
+    font-size: 40px;
+}
+
+.section02 .text li {
+    font-family: 'yg-jalnan';
+    width: 100%;
+    position: absolute;
+    top: 100px;
+    left: 0;
+    opacity: 0;
+    transition: 0.7s;
+    color: #ff0000;
+    
+}
+.section02 .text li.on {
+    opacity: 1;
+    transition: 0.7s;
+    
+}
+
+.section02 .wrap .item.on {
+    opacity: 1;
+}
+.section02 .wrap .item.item.on:nth-child(1) {
+    transition: 0.7s;
+}
+.section02 .wrap .item.item.on:nth-child(2) {
+    transition: 0.7s 0.5s;
+}
+.section02 .wrap .item.item.on:nth-child(3) {
+    transition: 0.7s 1s;
+}
+.section02 .wrap .item.item.on:nth-child(4) {
+    transition: 0.7s 1.5s;
+}

@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>배경이미지변경</title>
+    <link rel="stylesheet" href="css/스크립트연습03.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        window.onload = () => {
+
+            const progressCircle = document.querySelector(".autoplay-progress svg");
+            const progressContent = document.querySelector(".autoplay-progress span");
+            var swiper = new Swiper(".mySwiper", {
+                spaceBetween: 30,
+                centeredSlides: true,
+                autoplay: {
+                    delay: 2500,
+                    disableOnInteraction: false
+                },
+               
+                
+                on: {
+                    autoplayTimeLeft(s, time, progress) {
+                        progressCircle.style.setProperty("--progress", 1 - progress);
+                        progressContent.textContent = `${Math.ceil(time / 1000)}s`;
+                    }
+                }
+            });
+
+
+
+
+
+            let loading = document.querySelector('.loading');
+            let loadingText = document.querySelectorAll('.loading li')
+            let i = 0;
+
+
+            setInterval(() => {
+
+                loadingText[i].classList.add('on');
+                i++;
+                if (i >= loadingText.length) {
+                    i = 0;
+                }
+            }, 1000);
+
+
+
+
+            //setTimeout () => 특정 시간 뒤에 스크립트 실행
+            setTimeout(() => {
+                //loading.style.display = 'none';
+                //loading.style.scale = '0'
+                loading.style.transform = 'rotate(360deg) scale(0)'
+
+
+
+
+            }, 7000);
+            let section01 = document.querySelector('.section01');
+            let bg = section01.querySelectorAll('.bg div');
+            let item = section01.querySelectorAll('.item');
+
+            window.addEventListener('scroll', () => {
+                //alert()
+                let scrollBar = window.scrollY; //스크롤바의 y축값
+                //console.log(scrollBar)
+                for (let i = 0; i < item.length; i++) {
+                    // 각 item들이 가지는 offsetTop;
+                    let itemTop = item[i].offsetTop;
+                    //console.log(itemTop) //50 404 758 1112
+                    //offsetTop => 브라우저에서 떨어진 y축 값
+                    //예외) 부모 조상에게 position이
+                    //있다면 그위치가 중심이 됨
+
+                    //clientheight =>높이값 찾기
+                    //????.clientheight
+                    //console.log(section01.clientHeight)
+                    console.log(item[i].clientHeight)
+                    //console.log(item[i].clientWidth) // 넓이값
+                    let itemHeight = item[i].clientHeight;
+                    if (scrollBar >= itemTop + itemHeight) {
+
+                        bg.forEach((item) => {
+
+                            item.classList.remove('on');
+
+                        });
+
+                        bg[i].classList.add('on');
+
+                        item.forEach((item) => {
+                            item.classList.remove('on');
+
+                        });
+
+                        item[i].classList.add('on');
+
+
+
+                    }
+
+
+                    //console.log(section01.offsetTop) //953
+
+                }
+            });
+
+            let depth01 = document.querySelectorAll('.depth01');
+            let depth02 = document.querySelectorAll('.depth02');
+
+            depth02.forEach((item) => {
+                item.previousElementSibling.classList.add('item');
+            });
+
+            for (let i = 0; i < depth01.length; i++) {
+                depth01[i].addEventListener('click', () => {
+                    //alert(i)
+
+                    if (getComputedStyle(depth01[i].nextElementSibling).display === 'none') {
+                        //alert(i)
+                        depth02.forEach((depth02Index) => {
+                            depth02Index.classList.remove('on');
+                        });
+                        depth01[i].nextElementSibling.classList.add('on');
+
+                        depth01.forEach((depth01Index) => {
+                            depth01Index.classList.remove('on');
+                        });
+                        depth01[i].classList.add('on');
+
+                    }
+                    else {
+                        depth01[i].classList.remove('on');
+
+                        depth01[i].nextElementSibling.classList.remove('on');
+
+
+                    }
+
+
+
+
+                });
+            }
+
+            let icon = document.querySelector('.icon');
+            let nav = document.querySelector('.nav');
+            let exo = document.querySelector('.exo');
+
+            icon.addEventListener('click', () => {
+                nav.style.display = 'block'
+
+            });
+
+            exo.addEventListener('click', () => {
+                nav.style.display = 'none'
+            });
+
+            let text = document.querySelectorAll('.text li');
+
+
+            setInterval(() => {
+                i++;
+
+                if (i >= text.length) {
+                    i = 0;
+                }
+                text.forEach((item) => {
+                    item.classList.remove('on');
+                });
+
+                text[i].classList.add('on');
+
+
+
+                //console.log(i)
+            }, 2000); // 1초 = 1000
+
+
+        }; //script end
+    </script>
+</head>
+
+<body>
+    <div class="loading">
+        <ul>
+
+            <li>A ring.</li>
+            <li>Necklace.</li>
+            <li>Earrings.</li>
+            <li>It's all yours</li>
+        </ul>
+    </div> <!-- loading end -->
+    <section class="main_visure">
+        <div>
+            <img src="img/악세사리5.jpg" alt="이미지">
+        </div>
+        <div class="text_wrap">
+            <ul class="text">
+                <li>Accessories only for you</li>
+                <li>Your own earrings</li>
+                <li>A shining ring</li>
+                <li>A brilliant necklace</li>
+            </ul>
+        </div>
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="img/악세사리-1.jpg" alt="이미지"></div>
+                <div class="swiper-slide"><img src="img/악세사리-2.jpg" alt="이미지"></div>
+                <div class="swiper-slide"><img src="img/악세사리-3.jpg" alt="이미지"></div>
+                <div class="swiper-slide"><img src="img/악세사리-4.jpg" alt="이미지"></div>
+                <div class="swiper-slide"><img src="img/악세사리-5.jpg" alt="이미지"></div>
+                
+
+            </div>
+            
+            <div class="swiper-pagination"></div>
+            <div class="autoplay-progress">
+                <svg viewBox="0 0 48 48">
+                    <circle cx="24" cy="24" r="20"></circle>
+                </svg>
+                <span></span>
+            </div>
+        </div>
+    </section> <!-- main_visure -->
+    <header class="header">
+        <div class="inner">
+            <div class="logo">
+                <h1>Accessories</h1>
+            </div>
+            <div class="int">
+                <ul>
+                    <li>Business</li>
+                    <li>A ring</li>
+                    <li>Earrings</li>
+                    <li>Necklace</li>
+                    <li>Accessories</li>
+                </ul>
+            </div>
+            <figure class="icon">
+
+                <img src="img/icons8-drag-list-down-64.png" alt="아이콘">
+
+            </figure>
+            <nav class="nav">
+                <div class="exo">
+                    <img src="img/icons8-twitterx-32.png" alt="이미지">
+                </div>
+                <ul class="gnb">
+                    <li>
+                        <a class="depth01" href="#">menu1</a>
+                        <ul class="depth02">
+                            <li><a href="#">menu1-1</a></li>
+                            <li><a href="#">menu1-2</a></li>
+                            <li><a href="#">menu1-3</a></li>
+                            <li><a href="#">menu1-4</a></li>
+                        </ul>
+                    <li>
+                        <a class="depth01" href="#">menu2</a>
+
+                    <li>
+                        <a class="depth01" href="#">menu3</a>
+                        <ul class="depth02">
+                            <li><a href="#">menu3-1</a></li>
+                            <li><a href="#">menu3-2</a></li>
+                            <li><a href="#">menu3-3</a></li>
+                            <li><a href="#">menu3-4</a></li>
+                        </ul>
+                    <li>
+                        <a class="depth01" href="#">menu4</a>
+                        <ul class="depth02">
+                            <li><a href="#">menu4-1</a></li>
+                            <li><a href="#">menu4-2</a></li>
+                            <li><a href="#">menu4-3</a></li>
+                            <li><a href="#">menu4-4</a></li>
+                        </ul>
+                    </li>
+                </ul><!-- gnb end -->
+            </nav> <!-- nav end -->
+
+        </div> <!-- inner end -->
+    </header> <!-- header end -->
+    <section class="section01">
+
+        <div class="bg">
+            <div class="bg01"></div> <!-- bg01 end -->
+            <div class="bg02"></div> <!-- bg01 end -->
+            <div class="bg03"></div> <!-- bg01 end -->
+            <div class="bg04"></div> <!-- bg01 end -->
+        </div> <!-- bg end -->
+
+        <div class="inner">
+            <div class="title">
+                <h3></h3>
+            </div><!-- title end -->
+            <div class="list">
+
+                <div class="item">
+
+
+                    <a href="#">
+                        <h4>Accessories</h4>
+                    </a>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum beatae voluptates, ipsa eos, id vel
+                        tenetur odit illo quod labore iure corrupti cum unde magni vero voluptatibus dignissimos
+                        mollitia totam!</p>
+
+                </div><!-- item end -->
+                <div class="item">
+                    <a href="#">
+                        <h4>A ring</h4>
+                    </a>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum beatae voluptates, ipsa eos, id vel
+                        tenetur odit illo quod labore iure corrupti cum unde magni vero voluptatibus dignissimos
+                        mollitia totam!</p>
+                </div><!-- item end -->
+                <div class="item">
+                    <a href="#">
+                        <h4>Earrings</h4>
+                    </a>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum beatae voluptates, ipsa eos, id vel
+                        tenetur odit illo quod labore iure corrupti cum unde magni vero voluptatibus dignissimos
+                        mollitia totam!</p>
+                </div><!-- item end -->
+                <div class="item">
+                    <a href="#">
+                        <h4>Necklace</h4>
+                    </a>
+                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eum beatae voluptates, ipsa eos, id vel
+                        tenetur odit illo quod labore iure corrupti cum unde magni vero voluptatibus dignissimos
+                        mollitia totam!</p>
+                </div><!-- item end -->
+            </div><!-- list end -->
+        </div><!-- inner end -->
+
+    </section> <!-- section01 end -->
+    <!--   <section class="section02">
+        <div class="inner">
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur minus alias sit explicabo magnam
+                asperiores. Dicta, veritatis eligendi! Architecto tempora cumque rerum debitis odit dolore, a assumenda
+                exercitationem maiores eos.</p>
+        </div> <!-- inner end -->
+    </section> <!-- section02 end --> -->
+</body>
+
+</html>

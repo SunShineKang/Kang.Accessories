@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    line-height: 1;
+    color: #333;
+}
+
+.header {
+    height: 80px;
+}
+.header .inner {
+    max-width: 1000px;
+    width: calc(100% - 30px);
+    margin: 0 auto;
+}
+.header .inner .nav {
+    width: 300px;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background-color: bisque;
+    padding: 50px 0;
+
+}
+.header .inner .nav .gnb > li {
+    margin: 20px 0;
+}
+.header .inner .nav .gnb > li .depth01 {
+    font-size: 20px;
+    font-weight: bold;
+    padding: 20px;
+    position: relative;
+    display: block;
+}
+.header .gnb > li .depth01.item::before {
+    content: '';
+    width: 20px;
+    height: 20px;
+    background: url('../img/아래.png') right center / 100% no-repeat;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+.header .gnb > li .depth01.on.item::before {
+   
+    transform: rotate(180deg) translateY(50%);
+}
+.header .inner .nav .gnb > li .depth02 {
+    background-color: rgb(232, 245, 161);
+    padding: 20px;
+    display: none;
+}
+.header .inner .nav .gnb > li .depth02 li {
+    padding: 10px 0;
+}
+
+.header .inner .nav .gnb > li .depth02.on {
+    display: block;
+}

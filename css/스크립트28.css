@@ -1,0 +1,49 @@
+@charset "UTF-8";
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    line-height: 1;
+    color: #333;
+    background-color: #333;
+}
+
+.loading {
+    width: 100%;
+    height: 100%;
+    background: url(../img/5.jpg) center center / cover no-repeat;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    transition: 0.7s;
+}
+
+.loading ul {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+
+}
+.loading ul li {
+    display: none;
+}
+.loading ul li.on {
+    display: block;
+}
+
